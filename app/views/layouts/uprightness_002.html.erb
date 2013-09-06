@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : Uprightness 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20130920
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" />
+
+  <%= stylesheet_link_tag    "uprightness", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+<body>
+<div id="header-wrapper">
+	<div id="header" class="uprightness-container-wrapper">
+    <div class="uprightness-container">
+      <div id="logo">
+        <h1><a href="#">Uprightness</a></h1>
+      </div>
+      <div id="menu">
+        <ul>
+          <li class="current_page_item"><a href="#homepage" accesskey="1" title="">Homepage</a></li>
+          <li style="display: none; "><a href="#" accesskey="2" title="">Our Clients</a></li>
+          <li><a href="#about_us" accesskey="3" title="">About Us</a></li>
+          <li style="display: none; "><a href="#" accesskey="4" title="">Careers</a></li>
+          <li><a href="#contact_us" accesskey="5" title="">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+	</div>
+</div>
+<div id="featured">&nbsp;</div>
+<div id="wrapper">
+	<div id="page" class="uprightness-container-wrapper">
+    <div class="uprightness-container">
+      <div id="content">
+
+      <%= yield %>
+
+      </div>
+    </div>
+	</div>
+</div>
+<div id="copyright" class="uprightness-container-wrapper">
+    <p>Copyright (c) 2013 Sitename.com. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://www.freecsstemplates.org/" rel="nofollow">FreeCSSTemplates.org</a>.</p>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+  function extractBookmark(href){
+    parts = href.split(/#/);
+    bookmark = (parts.length > 1) ? parts[1] : "homepage";
+    return bookmark;
+  }
+
+  function selectBookmark(bookmark){
+    $("#menu li").removeClass("current_page_item");
+    $("#menu li a[href='#" + bookmark + "']").parent().addClass("current_page_item");
+  }
+
+  $(document).ready(function(){
+    bookmark = extractBookmark(location.href);
+    selectBookmark(bookmark);
+
+    $("#menu li").click(function(){
+      href = $(this).find("a").attr("href");
+      bookmark = extractBookmark(href);
+      selectBookmark(bookmark);
+    });
+    
+  });
+</script>

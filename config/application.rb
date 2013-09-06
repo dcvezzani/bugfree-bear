@@ -69,13 +69,14 @@ module Clf004
     config.assets.version = '1.0'
 
     # Additional paths where assets may be looked for
-    config.assets.paths %W(#{config.root}/bootstrap #{config.root}/bootstrap_wizard #{config.root}/jquery.ui.theme.lightness/css/ui-lightness)
+    config.assets.paths %W(#{config.root}/bootstrap #{config.root}/bootstrap_wizard #{config.root}/jquery.ui.theme.lightness/css/ui-lightness #{config.root}/uprightness)
     # #{config.root}/backbone
 
     initializer :after_append_asset_paths, 
                 :group => :all, 
                 :after => :append_assets_path do
        #config.assets.paths.unshift Rails.root.join(config.root, "app", "assets", "backbone").to_s
+       config.assets.paths.unshift Rails.root.join(config.root, "app", "assets", "uprightness").to_s
        config.assets.paths.unshift Rails.root.join(config.root, "app", "assets", "bootstrap", "css").to_s
        config.assets.paths.unshift Rails.root.join(config.root, "app", "assets", "bootstrap_wizard").to_s
        config.assets.paths.unshift Rails.root.join(config.root, "app", "assets", "jquery.ui.theme.lightness", "css", "ui-lightness").to_s

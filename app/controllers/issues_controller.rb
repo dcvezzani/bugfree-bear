@@ -1,4 +1,6 @@
 class IssuesController < ApplicationController
+  layout 'uprightness_002'
+
   # GET /issues
   # GET /issues.json
   def index
