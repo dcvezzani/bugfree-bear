@@ -1,0 +1,171 @@
+// Place all the styles related to the Issues controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#issue_body{
+  width: 700px;
+  height: 230px;
+}
+
+.actions{
+  width: 100%;
+  text-align: right; 
+}
+
+      h3, h4{
+        margin: 2em 0 1em;
+      }
+
+      h3{
+        font-size: 16pt;
+      }
+
+      h4{
+        font-size: 14pt;
+      }
+
+      .section-title{
+        border-bottom: 1px solid silver;
+        color: #315e9d;
+        font-weight: bold;
+        font-size: 12pt;
+        padding-top: 1em;
+      }
+
+      pre.code, 
+      pre.code-snippet, 
+      pre.code-regexp{
+        padding: .5em;
+      }
+
+      pre.code-regexp, 
+      pre.code-snippet{
+/* IE10 Consumer Preview */ 
+background-image: -ms-linear-gradient(right, #FFFFFF 0%, #CEDFEF 100%);
+
+/* Mozilla Firefox */ 
+background-image: -moz-linear-gradient(right, #FFFFFF 0%, #CEDFEF 100%);
+
+/* Opera */ 
+background-image: -o-linear-gradient(right, #FFFFFF 0%, #CEDFEF 100%);
+
+/* Webkit (Safari/Chrome 10) */ 
+background-image: -webkit-gradient(linear, right top, left top, color-stop(0, #FFFFFF), color-stop(1, #CEDFEF));
+
+/* Webkit (Chrome 11+) */ 
+background-image: -webkit-linear-gradient(right, #FFFFFF 0%, #CEDFEF 100%);
+
+/* W3C Markup, IE10 Release Preview */ 
+background-image: linear-gradient(to left, #FFFFFF 0%, #CEDFEF 100%);
+      }
+
+      pre.code{
+        border: 1px dashed #CEDFEF;
+
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+      }
+
+blockquote {
+font-family: Georgia, serif;
+font-size: 18px;
+        /* font-style: italic; */
+width: 500px;
+margin: 0.25em 0;
+padding: 0.25em 40px;
+line-height: 1.45;
+position: relative;
+        /* color: #383838; */
+        color: #D2792F;
+}
+
+blockquote:before {
+display: block;
+content: "“";
+font-size: 80px;
+position: absolute;
+left: -20px;
+top: -20px;
+color: #7a7a7a;
+}
+
+blockquote cite {
+color: #999999;
+font-size: 14px;
+display: block;
+margin-top: 5px;
+}
+ 
+blockquote cite:before {
+content: "— ";
+}
+
+body {
+  background: url("images/bg01.png") repeat scroll 0 0 #2372DE;
+  color: #6C6C6C;
+  font-family: 'Open Sans',sans-serif;
+  font-size: 11pt;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
+div.left{
+  width: 60%; 
+  margin: 1em;
+  background: white; 
+  padding: 1em; 
+}
+
+.box
+{
+	position: relative;
+	width: 500px;
+	padding: 50px;
+	margin: 0 auto;
+	background-color: #fff;
+	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+.box:before, .box:after
+{
+	position: absolute;
+	width: 40%;
+	height: 10px;
+	content: ' ';
+	left: 12px;
+	bottom: 14px;
+	background: transparent;
+	-webkit-transform: skew(-5deg) rotate(-5deg);
+	-moz-transform: skew(-5deg) rotate(-5deg);
+	-ms-transform: skew(-5deg) rotate(-5deg);
+	-o-transform: skew(-5deg) rotate(-5deg);
+	transform: skew(-5deg) rotate(-5deg);
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+	z-index: -1;
+} 
+
+.box:after
+{
+	left: auto;
+	right: 12px;
+	-webkit-transform: skew(5deg) rotate(5deg);
+	-moz-transform: skew(5deg) rotate(5deg);
+	-ms-transform: skew(5deg) rotate(5deg);
+	-o-transform: skew(5deg) rotate(5deg);
+	transform: skew(5deg) rotate(5deg);
+}
+
+.box .body{
+  a, div{
+    margin-bottom: 1em;
+    display: block; 
+  }
+}

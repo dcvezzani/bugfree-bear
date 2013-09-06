@@ -1,4 +1,6 @@
 Clf004::Application.routes.draw do
+  resources :issues
+
   get "welcome/index"
   get "welcome/wizard", as: :wizard_welcome
   get "welcome/wizard_bar", as: :wizard_bar_welcome
