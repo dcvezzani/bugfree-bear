@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :issue do
+    title "MyString"
     body "MyText"
   end
 end

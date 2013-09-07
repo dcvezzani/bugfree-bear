@@ -1,3 +1,6 @@
 class Issue < ActiveRecord::Base
-  attr_accessible :body
+  attr_accessible :body, :title
+
+  validates :title, :body, presence: true
+  validates :title, uniqueness: true
 end

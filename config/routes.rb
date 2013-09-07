@@ -1,4 +1,5 @@
 Clf004::Application.routes.draw do
+  get "issues/page/:page" => 'issues#page', as: :issue_page
   resources :issues
 
   get "welcome/index"

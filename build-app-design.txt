@@ -2,6 +2,9 @@
 # ===== Thu Sep  5 16:41:38 PDT 2013
 
 ./bin/rails g scaffold Issue body:text
+
+./bin/rails g migration add_title_to_issues title:string
+./bin/rails g scaffold Issue title:string body:text
 ./bin/rake db:migrate db:migrate:status
 
 

@@ -1,6 +1,8 @@
 class IssuesController < ApplicationController
   layout 'uprightness_002'
 
+  before_filter :load_recent_entries
+
   # GET /issues
   # GET /issues.json
   def index
@@ -19,6 +21,15 @@ class IssuesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.json { render json: @issue }
+    end
+  end
+
+  def page
+    @issue = Issue.find_by_title(params[:page])
+
+    respond_to do |format|
+      format.html { render action: :show }
       format.json { render json: @issue }
     end
   end
@@ -81,5 +92,9 @@ class IssuesController < ApplicationController
       format.html { redirect_to issues_url }
       format.json { head :no_content }
     end
+  end
+
+  def load_recent_entries
+    @recent_entries = Issue.limit(5)
   end
 end

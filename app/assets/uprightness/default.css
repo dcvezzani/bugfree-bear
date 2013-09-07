@@ -53,10 +53,15 @@
 		text-decoration: none;
 	}
 	
-	.uprightness-container-wrapper
+	.xuprightness-container-wrapper
 	{
 		margin: 0px auto;
 		width: 800px;
+	}
+	.uprightness-container-wrapper
+	{
+		min-width: 750px;
+		min-width: 1089px;
 	}
 	.uprightness-container
 	{
@@ -446,6 +451,7 @@
 	{
 		float: right;
 		width: 450px;
+		width: 325px;
 	}
 
 	#stwo-col

@@ -24,7 +24,7 @@ describe IssuesController do
   # Issue. As you add validations to Issue, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { "body" => "MyText" }
+    { "title" => "MyString" }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -89,14 +89,14 @@ describe IssuesController do
       it "assigns a newly created but unsaved issue as @issue" do
         # Trigger the behavior that occurs when invalid params are submitted
         Issue.any_instance.stub(:save).and_return(false)
-        post :create, {:issue => { "body" => "invalid value" }}, valid_session
+        post :create, {:issue => { "title" => "invalid value" }}, valid_session
         assigns(:issue).should be_a_new(Issue)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Issue.any_instance.stub(:save).and_return(false)
-        post :create, {:issue => { "body" => "invalid value" }}, valid_session
+        post :create, {:issue => { "title" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -110,8 +110,8 @@ describe IssuesController do
         # specifies that the Issue created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Issue.any_instance.should_receive(:update_attributes).with({ "body" => "MyText" })
-        put :update, {:id => issue.to_param, :issue => { "body" => "MyText" }}, valid_session
+        Issue.any_instance.should_receive(:update_attributes).with({ "title" => "MyString" })
+        put :update, {:id => issue.to_param, :issue => { "title" => "MyString" }}, valid_session
       end
 
       it "assigns the requested issue as @issue" do
@@ -132,7 +132,7 @@ describe IssuesController do
         issue = Issue.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Issue.any_instance.stub(:save).and_return(false)
-        put :update, {:id => issue.to_param, :issue => { "body" => "invalid value" }}, valid_session
+        put :update, {:id => issue.to_param, :issue => { "title" => "invalid value" }}, valid_session
         assigns(:issue).should eq(issue)
       end
 
@@ -140,7 +140,7 @@ describe IssuesController do
         issue = Issue.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Issue.any_instance.stub(:save).and_return(false)
-        put :update, {:id => issue.to_param, :issue => { "body" => "invalid value" }}, valid_session
+        put :update, {:id => issue.to_param, :issue => { "title" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end
