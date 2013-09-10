@@ -1,0 +1,11 @@
+<h1>All pages</h1>
+
+<ul>
+<% @issues.each do |issue| %>
+  <li>
+    <% link_to "#{issue.title}.html", issue_path(issue) %>
+    <%= link_to issue_page_url(issue.title) %>
+  </li>
+<% end %>
+</ul>
+
