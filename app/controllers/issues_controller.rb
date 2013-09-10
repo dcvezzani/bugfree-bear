@@ -95,6 +95,6 @@ class IssuesController < ApplicationController
   end
 
   def load_recent_entries
-    @recent_entries = Issue.limit(5)
+    @recent_entries = Issue.order("updated_at desc").limit(5)
   end
 end

@@ -59,6 +59,7 @@ Released   : 20130920
         <div id="fl_menu">
         <p class="section-title"><%= yield(:title) %></p>
 
+        <p class="toc-title"><a href="javascript: void(0);">Page Links</a></p>
         <div class="toc"></div>
 
         <p>Recent Links</p>
@@ -105,7 +106,6 @@ Released   : 20130920
     toc = [];
 
     if(toc_nodes.length > 0){
-      toc[toc.length] = "<p>Page Links</p>"
       toc[toc.length] = "<ul>"
       //alert($("#content a[name]").length);
       $(toc_nodes).each(function(i, node){
@@ -115,7 +115,17 @@ Released   : 20130920
 
       $("#sidebar div.toc").html(toc.join("\n"));
     }
-    
+  
+    $("#sidebar .toc-title").click(function(){
+      if($("#sidebar div.toc").is(":visible")){
+        $("#sidebar div.toc").hide();
+      } else {
+        $("#sidebar div.toc").show();
+      }
+
+      return false;
+    });
+   
   });
 </script>
 
@@ -130,9 +140,11 @@ $closed_menu_opacity=0.75;
 $fl_menu=$("#fl_menu");
 $fl_menu_menu=$("#fl_menu .menu");
 $fl_menu_label=$("#fl_menu .label");
- 
+
+$menuPosition=0;
+
 $(window).load(function() {
-    menuPosition=$('#fl_menu').position().top;
+    $menuPosition=$('#fl_menu').position().top;
     FloatMenu();
     // $fl_menu.hover(
     //     function(){ //mouse over
@@ -153,6 +165,7 @@ $(window).scroll(function () {
 function FloatMenu(){
     var offset = 225;
     var scrollAmount=$(document).scrollTop();
+    var menuPosition = $menuPosition;
     var newPosition=menuPosition+scrollAmount - offset;
 
     if($(window).height()<$fl_menu.height()+$fl_menu_menu.height()){
