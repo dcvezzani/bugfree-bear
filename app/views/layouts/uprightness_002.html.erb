@@ -107,9 +107,11 @@ Released   : 20130920
 
     if(toc_nodes.length > 0){
       toc[toc.length] = "<ul>"
-      //alert($("#content a[name]").length);
+
       $(toc_nodes).each(function(i, node){
-        toc[toc.length] = "<li><a href=\"#" + $(node).attr("name") + "\">" + $(node).attr("name") + "</a>" + "</li>";
+        if(i < 20){
+          toc[toc.length] = "<li><a href=\"#" + $(node).attr("name") + "\">" + $(node).attr("name") + "</a>" + "</li>";
+        }
       })
       toc[toc.length] = "</ul>";
 
@@ -144,7 +146,7 @@ $fl_menu_label=$("#fl_menu .label");
 $menuPosition=0;
 
 $(window).load(function() {
-    $menuPosition=$('#fl_menu').position().top;
+    // $menuPosition=$('#fl_menu').position().top;
     FloatMenu();
     // $fl_menu.hover(
     //     function(){ //mouse over
@@ -167,11 +169,13 @@ function FloatMenu(){
     var scrollAmount=$(document).scrollTop();
     var menuPosition = $menuPosition;
     var newPosition=menuPosition+scrollAmount - offset;
+    console.log(menuPosition);
 
-    if($(window).height()<$fl_menu.height()+$fl_menu_menu.height()){
-        $fl_menu.css("top",menuPosition);
+    // if($(window).height()<$fl_menu.height()+$fl_menu_menu.height()){
+    //     $fl_menu.css("top",menuPosition);
 
-    } else if(scrollAmount <= offset){
+    // } else if(scrollAmount <= offset){
+    if(scrollAmount <= offset){
         $fl_menu.stop().animate({top: 0}, $float_speed, $float_easing);
 
     } else if(scrollAmount > offset){
