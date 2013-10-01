@@ -4,7 +4,7 @@
 <% @issues.each do |issue| %>
   <li>
     <% link_to "#{issue.title}.html", issue_path(issue) %>
-    <%= link_to issue_page_url(issue.title) %>
+    <%= link_to "wget -P unprocessed #{issue_page_url(issue.title)}", issue_page_url(issue.title) %>
   </li>
 <% end %>
 </ul>

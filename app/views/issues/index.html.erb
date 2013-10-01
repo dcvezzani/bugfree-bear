@@ -4,17 +4,11 @@
 <div>
 <% @issues.each do |issue| %>
 
-<div class="box left">
-<div class="actions">
-<%= link_to 'Show', issue %> | <%= link_to 'Edit', edit_issue_path(issue) %> | <%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %>
-</div>
+<%#= raw(issue.body) %>
+<p class="section-title"><%= issue.title %> 
+<span style="float: right; ">(<%= link_to 'Show', issue %> | <%= link_to 'Edit', edit_issue_path(issue) %> | <%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %>)</span>
+</p>
 
-<div class="body">
-<%= raw(issue.body) %>
-</div>
-</div>
-
-<div class="right"></div>
 <% end %>
 </div>
 

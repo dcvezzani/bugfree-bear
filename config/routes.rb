@@ -1,10 +1,7 @@
 Clf004::Application.routes.draw do
   get "issues/page/:page" => 'issues#page', as: :issue_page
-  resources :issues do
-    collection do
-      get 'page_list'
-    end
-  end
+  get "issues/page_list" => 'issues#page_list', as: :page_list_issues
+  resources :issues
 
   get "welcome/index"
   get "welcome/wizard", as: :wizard_welcome

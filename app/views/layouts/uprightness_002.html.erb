@@ -35,9 +35,10 @@ Released   : 20130920
       </div>
       <div id="menu">
         <ul>
-          <li class="current_page_item"><a href="#homepage" accesskey="1" title="">Homepage</a></li>
+          <li class="current_page_item"><a href="<%= issues_path() %>#homepage" accesskey="1" title="">Homepage</a></li>
           <li style="display: none; "><a href="#" accesskey="2" title="">Our Clients</a></li>
-          <li><a href="#about_us" accesskey="3" title="">About Us</a></li>
+          <li style="display: none; "><a href="#about_us" accesskey="3" title="">About Us</a></li>
+          <li><a accesskey="3" href="<%= page_list_issues_path() %>#page_list" title="">List Pages</a></li>
           <li style="display: none; "><a href="#" accesskey="4" title="">Careers</a></li>
           <li><a href="#contact_us" accesskey="5" title="">Contact Us</a></li>
         </ul>
@@ -61,6 +62,13 @@ Released   : 20130920
 
         <p class="toc-title"><a href="javascript: void(0);">Page Links</a></p>
         <div class="toc"></div>
+
+        <p>Important Links</p>
+        <ul>
+          <% @important_entries.each do |important_entry| %>
+            <li><%= link_to important_entry.title, issue_page_path(important_entry.title) %></li>
+          <% end %>
+        </ul>
 
         <p>Recent Links</p>
         <ul>
@@ -116,6 +124,8 @@ Released   : 20130920
       toc[toc.length] = "</ul>";
 
       $("#sidebar div.toc").html(toc.join("\n"));
+    } else {
+      $("#sidebar .toc-title").hide();
     }
   
     $("#sidebar .toc-title").click(function(){
