@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @normal_issue.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @normal_issue.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_normal_issue_path(@normal_issue) %> |
+<%= link_to 'Back', normal_issues_path %>

@@ -2,6 +2,7 @@ class IssuesController < ApplicationController
   layout 'uprightness_002'
 
   before_filter :load_recent_entries
+  before_filter :load_important_entries
 
   # GET /issues
   # GET /issues.json
@@ -93,6 +94,22 @@ class IssuesController < ApplicationController
     end
   end
 
+  def mark_as_important
+    @issue = Issue.find(params[:id])
+    @issue.type = "ImportantIssue"
+    issue.list_order = ImportantIssue.max_list_order + 1
+
+    respond_to do |format|
+      if @issue.save
+        format.html { redirect_to @issue, notice: 'Issue was successfully marked as important.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @issue.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # DELETE /issues/1
   # DELETE /issues/1.json
   def destroy
@@ -107,5 +124,8 @@ class IssuesController < ApplicationController
 
   def load_recent_entries
     @recent_entries = Issue.order("updated_at desc").limit(5)
+  end
+  def load_important_entries
+    @important_entries = ImportantIssue.order("list_order desc").limit(5)
   end
 end

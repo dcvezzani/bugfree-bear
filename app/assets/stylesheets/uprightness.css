@@ -13,7 +13,9 @@
  *= require ../bootstrap/css/bootstrap-responsive
  *= require ../bootstrap_wizard/prettify
  *= require issues
+ *= require important_issues
  *= require_tree ../uprightness
+ *= require ../jquery-lightbox-master/css/lightbox
  *= require ../jquery.ui.theme.lightness/css/ui-lightness/jquery-ui-1.8.22.custom
  */
 

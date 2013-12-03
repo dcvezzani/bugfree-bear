@@ -6,7 +6,7 @@
 
 <%#= raw(issue.body) %>
 <p class="section-title"><%= issue.title %> 
-<span style="float: right; ">(<%= link_to 'Show', issue %> | <%= link_to 'Edit', edit_issue_path(issue) %> | <%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %>)</span>
+<span style="float: right; ">(<%= link_to 'Show', issue_path(issue) %> | <%= link_to 'Imp', mark_as_important_issue_path(issue, _method: "put") %> | <%= link_to 'Edit', edit_issue_path(issue) %> | <%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %>)</span>
 </p>
 
 <% end %>
@@ -15,3 +15,19 @@
 <br />
 
 <%= link_to 'New Issue', new_issue_path %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("a:contains('Imp')").click(function(){
+      var link = $(this);
+      var href = $(this).attr("href");
+
+      $.post(href, {}, function(){
+        show_href = $(link).parent().find("a:contains('Show')").attr("href");
+        location.href = "<%= issues_path %>";
+      }, "json")
+
+      return false;
+    });
+  });
+</script>

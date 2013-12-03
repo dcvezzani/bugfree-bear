@@ -1,7 +1,21 @@
 Clf004::Application.routes.draw do
+
   get "issues/page/:page" => 'issues#page', as: :issue_page
   get "issues/page_list" => 'issues#page_list', as: :page_list_issues
-  resources :issues
+  resources :issues do
+    member do
+      post 'mark_as_important'
+    end
+  end
+
+  resources :important_issues do
+    member do
+      post 'move_up'
+      post 'move_down'
+    end
+  end
+
+  resources :normal_issues
 
   get "welcome/index"
   get "welcome/wizard", as: :wizard_welcome

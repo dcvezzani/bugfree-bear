@@ -1,4 +1,18 @@
 
+# ===== Tue Oct  1 10:57:17 PDT 2013
+
+./bin/rails g migration add_list_order_to_issues list_order:integer
+./bin/rake db:migrate db:migrate:status
+
+./bin/rails g migration add_type_to_issues type:string
+./bin/rake db:migrate db:migrate:status
+
+./bin/rails g scaffold NormalIssue title:string body:text
+./bin/rails g scaffold ImportantIssue title:string body:text
+./bin/rake db:migrate:status
+./bin/rake db:migrate db:migrate:status
+
+
 # ===== Thu Sep  5 16:41:38 PDT 2013
 
 ./bin/rails g scaffold Issue body:text

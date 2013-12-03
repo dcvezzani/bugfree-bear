@@ -1,0 +1,25 @@
+<h1>Listing important_issues</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @important_issues.each do |important_issue| %>
+  <tr>
+    <td><%= important_issue.title %></td>
+    <td><%= important_issue.body %></td>
+    <td><%= link_to 'Show', important_issue %></td>
+    <td><%= link_to 'Edit', edit_important_issue_path(important_issue) %></td>
+    <td><%= link_to 'Destroy', important_issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Important issue', new_important_issue_path %>

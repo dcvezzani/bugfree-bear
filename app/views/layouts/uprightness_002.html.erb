@@ -41,6 +41,7 @@ Released   : 20130920
           <li><a accesskey="3" href="<%= page_list_issues_path() %>#page_list" title="">List Pages</a></li>
           <li style="display: none; "><a href="#" accesskey="4" title="">Careers</a></li>
           <li><a href="#contact_us" accesskey="5" title="">Contact Us</a></li>
+          <li><a href="#admin" accesskey="6" title="">Admin</a></li>
         </ul>
       </div>
     </div>
@@ -63,12 +64,14 @@ Released   : 20130920
         <p class="toc-title"><a href="javascript: void(0);">Page Links</a></p>
         <div class="toc"></div>
 
+        <% if @important_entries.length > 0 %>
         <p>Important Links</p>
-        <ul>
+        <ul id="important-links">
           <% @important_entries.each do |important_entry| %>
-            <li><%= link_to important_entry.title, issue_page_path(important_entry.title) %></li>
+            <li><%= link_to important_entry.title, issue_page_path(important_entry.title) %> <span class="controls"><%#= "(#{important_entry.list_order})" %> | <%= link_to image_tag("up-arrow.png"), move_up_important_issue_path(important_entry, _method: "put"), class: "reorder" %> <%= link_to image_tag("down-arrow.png"), move_down_important_issue_path(important_entry, _method: "put"), class: "reorder" %></span></li>
           <% end %>
         </ul>
+        <% end %>
 
         <p>Recent Links</p>
         <ul>
@@ -90,15 +93,40 @@ Released   : 20130920
 
 <script type="text/javascript">
   function extractBookmark(href){
+    // console.log("href: " + href);
     parts = href.split(/#/);
     bookmark = (parts.length > 1) ? parts[1] : "homepage";
+    // console.log("selecting bookmark: " + bookmark);
     return bookmark;
   }
 
   function selectBookmark(bookmark){
     $("#menu li").removeClass("current_page_item");
-    $("#menu li a[href='#" + bookmark + "']").parent().addClass("current_page_item");
+
+    var items = $("#menu li:visible");
+    // console.log("$(items): " + $($(items)[2]).html());
+    var item = $(items)[0];
+    for(var i=0; item != null; i+=1){
+      // console.log("$(item): " + $(item).html());
+      var anchor = $(item).find("a[href]");
+      var href = $(anchor).attr("href");
+      var re = new RegExp("#" + bookmark);
+      if(href.match(re)){
+        console.log("matched href! " + href);
+        $(item).addClass("current_page_item");
+        return true;
+        break;
+      }
+
+      item = $(items)[i]
+    }
+    return false;
   }
+
+  $(document).ajaxSend(function(e, xhr, options) {
+    var token = $("meta[name='csrf-token']").attr("content");
+    xhr.setRequestHeader("X-CSRF-Token", token);
+  });
 
   $(document).ready(function(){
     bookmark = extractBookmark(location.href);
@@ -107,7 +135,14 @@ Released   : 20130920
     $("#menu li").click(function(){
       href = $(this).find("a").attr("href");
       bookmark = extractBookmark(href);
-      selectBookmark(bookmark);
+      // console.log("bookmark: " + bookmark);
+      var selected = selectBookmark(bookmark);
+
+      if(selected){
+        location.hash = "#" + bookmark;
+        window.location.reload(true);
+      }
+
     });
 
     toc_nodes = $("#content a[name]");
@@ -137,7 +172,26 @@ Released   : 20130920
 
       return false;
     });
-   
+  
+
+    $("a[class='reorder']").click(function(){
+      var link = $(this);
+      var href = $(this).attr("href");
+
+      $.post(href, {}, function(data, textStatus, jqXHR){
+        if(jqXHR.status == 204){
+          location.href = "<%= issues_path(anchor: 'admin') %>";
+          window.location.reload(true);
+        }
+      }, "json")
+
+      return false;
+    });
+
+    if(location.hash == "#admin"){
+      $("#important-links .controls").show();
+    }
+  
   });
 </script>
 
@@ -179,7 +233,7 @@ function FloatMenu(){
     var scrollAmount=$(document).scrollTop();
     var menuPosition = $menuPosition;
     var newPosition=menuPosition+scrollAmount - offset;
-    console.log(menuPosition);
+    // console.log(menuPosition);
 
     // if($(window).height()<$fl_menu.height()+$fl_menu_menu.height()){
     //     $fl_menu.css("top",menuPosition);

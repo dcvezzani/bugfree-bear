@@ -4,7 +4,11 @@
 
 <p id="notice"><%= notice %></p>
 
+<% if @issue.important? %>
+<p><%= image_tag "important-icon.png" %> This entry has been marked as important.</p>
+<% end %>
 
+<h3 class="title"><%= @issue.display_title %></h3>
 <div>
   <div class="box left">
     <div class="body">
@@ -15,6 +19,28 @@
   <div class="right"></div>
 </div>
 
+<div class="navigation-actions">
+  <%= link_to 'Edit', edit_issue_path(@issue) %> |
+  <%= link_to 'Back', issues_path %>
+</div>
 
-<%= link_to 'Edit', edit_issue_path(@issue) %> |
-<%= link_to 'Back', issues_path %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".image a.lightbox").lightbox();
+
+    $(".image a.lightbox").click(function(){
+
+      $(this).lightbox();
+      
+      // if($(this).hasClass("thumb")){
+      //   console.log("is thumb");
+      // } else {
+      //   console.log("is full-view");
+      // }
+
+      // $(".image img:hidden").show();
+      // $(this).hide();
+      return false;
+    });
+  });
+</script>
